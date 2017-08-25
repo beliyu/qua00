@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'My first AGM project';
+  lat = 43.7243;
+  lng = 20.7063;
 }
