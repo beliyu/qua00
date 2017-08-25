@@ -31,4 +31,5 @@ export class DirectionsMapDirective implements OnInit {
 
     });
   }
+
 }
