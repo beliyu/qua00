@@ -21,10 +21,14 @@ export class TableComponent implements OnInit {
 
   @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
 
-  origin = { longitude: 20.70, latitude: 43.72, name: 'Kv' };
-  destination = { longitude: 20.355, latitude: 43.89, name: 'Ca' };
+  myPos = { longitude: 0, latitude: 0, name: 'My Location' };
+  origin = { longitude: 0, latitude: 0, name: 'or' };
+  destination = { longitude: 0, latitude: 0, name: 'de' };
   destinationInput: FormControl;
   destinationOutput: FormControl;
+  duration = '';
+  distance = '';
+  x = {dur: '', dis: ''};
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -34,10 +38,12 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setMyPosition();
     this.destinationInput = new FormControl();
     this.destinationOutput = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
+
       const autocompleteInput = new google.maps.places.Autocomplete(this.pickupInputElementRef.nativeElement, {
         types: ['address']
       });
@@ -45,6 +51,7 @@ export class TableComponent implements OnInit {
       const autocompleteOutput = new google.maps.places.Autocomplete(this.pickupOutputElementRef.nativeElement, {
         types: ['address']
       });
+
       this.setupPlaceChangedListener(autocompleteInput, 'Orig');
       this.setupPlaceChangedListener(autocompleteOutput, 'Dest');
     });
@@ -73,17 +80,59 @@ export class TableComponent implements OnInit {
       });
     });
   }
-  private saveR(o, d) {
-    const r = { orig: this.origin, dest: this.destination };
-    r.orig.name = o;
-    r.dest.name = d;
-    this.ls.addRou(r);
+  private setMyPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.myPos.latitude = position.coords.latitude;
+        this.myPos.longitude = position.coords.longitude;
+      });
+    }
   }
   private whmSel(r) {
     this.ls.selectRou(r);
     this.router.navigate(['/map']);
   }
+  private whmSel2(o, d) {
+    if (this.origin.latitude !== 0 && this.destination.latitude !== 0) {
+      this.matrix(this.origin, this.destination);
+      const r = {
+        orig: this.origin,
+        dest: this.destination,
+        dur: '',
+        dis: ''
+      };
+      r.orig.name = o;
+      r.dest.name = d;
+      this.x = r;
+      this.ls.selectRou(r);
+      this.router.navigate(['/map']);
+    }
+  }
   private whmDel(i) {
     this.ls.remRou(i);
+  }
+  private setCurLoc() {
+    this.origin = this.myPos;
+    this.destinationInput.setValue('My Location');
+  }
+  private matrix(wo, wd) {
+    this.mapsAPILoader.load().then(() => {
+      const me = this;
+      const orig1 = new google.maps.LatLng(wo.latitude, wo.longitude);
+      const dest1 = new google.maps.LatLng(wd.latitude, wd.longitude);
+
+      const matrix = new google.maps.DistanceMatrixService();
+      matrix.getDistanceMatrix(
+        {
+          origins: [orig1],
+          destinations: [dest1],
+          travelMode: 'DRIVING'
+        }, (response, status) => {
+          me.x.dur = response.rows[0].elements[0].duration.text;
+          me.x.dis = response.rows[0].elements[0].distance.text;
+          this.ls.selectRou(me.x);
+          this.ls.addRou(me.x);
+        });
+    });
   }
 }

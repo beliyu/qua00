@@ -1,20 +1,37 @@
-<h2>
-  table works!
-</h2>
-<div class="row">
+<h3>
+  Enter places for routing
+</h3>
+
 <div class="form-group">
-  <input placeholder="Enter source place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-    #pickupInput [formControl]="destinationInput" class="col-md-4">
-  <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-    #pickupOutput [formControl]="destinationOutput" class="col-md-4 col-md-offset-1">
-  <button class="btn mce-btn-small col-md-offset-1" 
-    (click)="saveR(pickupInput.value, pickupOutput.value)">Save route</button>
+  <div class="row">
+    <div class="col-md-4 col-xs-8">
+      <input placeholder="Enter source place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+        #pickupInput [formControl]="destinationInput">
+      <div class="row">
+        <div class="col-xs-6 text-center"> <strong>Lat:</strong> <br/> {{origin.latitude}} </div>  
+        <div class="col-xs-6 text-center"> <strong>Long:</strong> <br/> {{origin.longitude}} </div>  
+      </div> 
+    </div>
+    <div class="col-md-1 col-xs-2">
+      <button class="btn btn-sm" 
+        (click)="setCurLoc()">Set loc</button>
+    </div> 
+    <div class="col-md-4 col-xs-8">
+      <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+        #pickupOutput [formControl]="destinationOutput" >
+      <div class="row">
+          <div class="col-xs-6 text-center"> <strong>Lat:</strong> <br/> {{destination.latitude}} </div>  
+          <div class="col-xs-6 text-center"> <strong>Long:</strong> <br/> {{destination.longitude}} </div>  
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-4">
+      <button class="btn btn-block btn-info" 
+      (click)="whmSel2(pickupInput.value, pickupOutput.value)">Select</button>
+    </div>
+  </div>
 </div>
-</div>
-<div class="row">
-<p> {{origin|json}}, {{destination|json}}</p>
-</div>
+
 <h3>Pre-entered routes</h3>
 <table2-component  [data]="ls.mapRoutes"
-(buttSel)="whmSel($event)"  (buttDel)="whmDel($event)" >
+  (buttSel)="whmSel($event)"  (buttDel)="whmDel($event)" >
 </table2-component>

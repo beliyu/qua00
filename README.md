@@ -1,28 +1,28 @@
-# Qua00
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
+# AGM  test task
 
-## Development server
+Temp eupen17
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Quick start
+**Make sure you have Node version >= 5.0 and NPM >= 3**
+> Clone/Download the repo 
 
-## Code scaffolding
+```bash
+# clone our repo
+# --depth 1 removes all but one .git commit history
+git clone --depth 1 https://github.com/beliyu/qua00
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+# change directory to our repo
+cd qua00
 
-## Build
+# install the repo with npm
+npm install
+# Some people prefer yarn ...
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+# start the server
+npm start
+___
 
-## Running unit tests
+# License
+ [MIT](/LICENSE)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

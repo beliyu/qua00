@@ -1,6 +1,9 @@
 <h4>
-  <em>From:</em> {{ls.curRoute.orig.name}} <em>To:</em> {{ls.curRoute.dest.name}}
+  <strong>From:</strong> {{ls.curRoute.orig.name}} <strong>To:</strong> {{ls.curRoute.dest.name}}
 </h4>
+<h5>
+  <strong>Distance:</strong> {{ls.curRoute.dis}} <strong>Duration:</strong> {{ls.curRoute.dur}}
+</h5>
 <agm-map [latitude]="lat" [longitude]="lng" >
     <agm-map-directions [origin]="ls.curRoute.orig" [destination]="ls.curRoute.dest"></agm-map-directions>
 </agm-map>

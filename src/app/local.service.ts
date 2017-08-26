@@ -2,28 +2,35 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocalService {
-public mapRoutes = [];
-public curRoute = {
-  "orig": {
-    "longitude": 20.6885667,
-    "latitude": 43.7240916,
-    "name": "Cara Lazara, Kraljevo"
-  },"dest": {
-    "longitude": 20.3490749,
-    "latitude": 43.897127,
-    "name": "Takovska, Čačak"}};
+  public mapRoutes;
+  public curRoute = {
+    'orig': {
+      'longitude': 20.6885667,
+      'latitude': 43.7240916,
+      'name': 'Cara Lazara, Kraljevo'
+    }, 'dest': {
+      'longitude': 20.3490749,
+      'latitude': 43.897127,
+      'name': 'Takovska, Čačak'
+    }
+  };
 
-  constructor() { this.getls(); }
+  constructor() {
+    this.getls();
+  }
 
   getls() {
-    const retrievedObject = localStorage.getItem('wrou');
-    this.mapRoutes = JSON.parse(retrievedObject);
+    const rObject = localStorage.getItem('wrou');
+    this.mapRoutes = rObject ? JSON.parse(rObject) : [];
   }
   setls(r) {
     localStorage.setItem('wrou', JSON.stringify(r));
   }
 
   addRou(r) {
+    if (this.mapRoutes.length > 9) {
+      this.mapRoutes.splice(9);
+    }
     this.mapRoutes = [... this.mapRoutes];
     this.mapRoutes.unshift(r);
     this.setls(this.mapRoutes);

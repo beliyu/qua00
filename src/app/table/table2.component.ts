@@ -11,14 +11,16 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
       <th>#</th>
       <th>Origin place</th>
       <th>Destination</th>
-      <th> </th>
+      <th> Distance </th>
+      <th> Duration </th>
       <th>Delete</th>
     </tr>
     <tr *ngFor="let w of data let i=index" [@anBoja]="'in'" >
       <td>{{i+1}}</td>
-      <td>{{w.orig.name}}</td>
-      <td>{{w.dest.name}}</td>
-      <td><button class="btn " (click)="buttSel.emit(w)">Select</button></td>
+      <td (click)="buttSel.emit(w)"> {{w.orig.name}} </td>
+      <td (click)="buttSel.emit(w)"> {{w.dest.name}} </td>
+      <td (click)="buttSel.emit(w)"> {{w.dis}} </td>
+      <td (click)="buttSel.emit(w)"> {{w.dur}} </td>
       <td><button class="btn btn-primary" (click)="buttDel.emit(i)">X</button></td>
     </tr>
   </table>
@@ -38,6 +40,9 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
     ])
   ],
     styles: [`
+    td {
+      cursor: pointer;
+    }
     `]
 })
 export class Table2Component {

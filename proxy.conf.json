@@ -1,0 +1,7 @@
+{
+    "/api": {
+      "target": "https://maps.googleapis.com/maps/api/distancematrix/json",
+      "secure": false,
+      "pathRewrite": {"^/api" : ""}
+    }
+  }
