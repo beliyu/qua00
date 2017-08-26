@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, NgZone } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMapsAPIWrapper, MapsAPILoader, AgmCoreModule } from '@agm/core';
+import { Router } from '@angular/router';
 import { DirectionsMapDirective } from '../direction-map.directive';
 import { LocalService } from '../local.service';
 
@@ -28,6 +29,7 @@ export class TableComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
+    private router: Router,
     private ls: LocalService
   ) { }
 
@@ -77,8 +79,9 @@ export class TableComponent implements OnInit {
     r.dest.name = d;
     this.ls.addRou(r);
   }
-  private selR(i) {
-    this.ls.selectRou(i);
+  private whmSel(r) {
+    this.ls.selectRou(r);
+    this.router.navigate(['/map']);
   }
   private whmDel(i) {
     this.ls.remRou(i);

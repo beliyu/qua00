@@ -3,7 +3,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LocalService {
 public mapRoutes = [];
-public curRoute = {};
+public curRoute = {
+  "orig": {
+    "longitude": 20.6885667,
+    "latitude": 43.7240916,
+    "name": "Cara Lazara, Kraljevo"
+  },"dest": {
+    "longitude": 20.3490749,
+    "latitude": 43.897127,
+    "name": "Takovska, Čačak"}};
 
   constructor() { this.getls(); }
 
@@ -21,7 +29,7 @@ public curRoute = {};
     this.setls(this.mapRoutes);
   }
   selectRou(i) {
-    this.curRoute = this.mapRoutes[i];
+    this.curRoute = i;
   }
   remRou(i) {
     this.mapRoutes.splice(i, 1);

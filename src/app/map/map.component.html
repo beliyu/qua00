@@ -1,6 +1,6 @@
-<h2>
-  map works!
-</h2>
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="10">
-    <agm-map-directions [origin]="origin" [destination]="destination"></agm-map-directions>
+<h4>
+  <em>From:</em> {{ls.curRoute.orig.name}} <em>To:</em> {{ls.curRoute.dest.name}}
+</h4>
+<agm-map [latitude]="lat" [longitude]="lng" >
+    <agm-map-directions [origin]="ls.curRoute.orig" [destination]="ls.curRoute.dest"></agm-map-directions>
 </agm-map>
