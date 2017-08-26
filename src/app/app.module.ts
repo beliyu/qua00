@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DirectionsMapDirective } from './direction-map.directive';
 import { MapComponent } from './map/map.component';
 import { TableComponent } from './table/table.component';
+import { LocalService } from './local.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { TableComponent } from './table/table.component';
       libraries: ['places']
     })
   ],
-  providers: [],
+  providers: [LocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
