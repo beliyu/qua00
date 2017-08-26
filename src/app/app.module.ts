@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -7,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { DirectionsMapDirective } from './direction-map.directive';
 import { MapComponent } from './map/map.component';
-import { TableComponent } from './table/table.component';
+import { TableComponent, Table2Component } from './table';
 import { LocalService } from './local.service';
 
 @NgModule({
@@ -15,10 +16,11 @@ import { LocalService } from './local.service';
     AppComponent,
     DirectionsMapDirective,
     MapComponent,
-    TableComponent
+    TableComponent, Table2Component
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({

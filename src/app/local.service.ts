@@ -16,10 +16,15 @@ public curRoute = {};
   }
 
   addRou(r) {
+    this.mapRoutes = [... this.mapRoutes];
     this.mapRoutes.unshift(r);
     this.setls(this.mapRoutes);
   }
   selectRou(i) {
     this.curRoute = this.mapRoutes[i];
+  }
+  remRou(i) {
+    this.mapRoutes.splice(i, 1);
+    this.setls(this.mapRoutes);
   }
 }

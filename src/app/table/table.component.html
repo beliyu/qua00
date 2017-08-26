@@ -14,5 +14,7 @@
 <div class="row">
 <p> {{origin|json}}, {{destination|json}}</p>
 </div>
-<h3>mRou</h3>
-<div>{{mRou|json}}</div>
+<h3>Pre-entered routes</h3>
+<table2-component  [data]="ls.mapRoutes"
+(buttSel)="whmTogg($event)"  (buttDel)="whmDel($event)" >
+</table2-component>

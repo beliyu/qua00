@@ -20,7 +20,6 @@ export class TableComponent implements OnInit {
 
   @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
 
-  mRou = [];
   origin = { longitude: 20.70, latitude: 43.72, name: 'Kv' };
   destination = { longitude: 20.355, latitude: 43.89, name: 'Ca' };
   destinationInput: FormControl;
@@ -33,7 +32,6 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mRou = this.ls.mapRoutes;
     this.destinationInput = new FormControl();
     this.destinationOutput = new FormControl();
 
@@ -81,5 +79,8 @@ export class TableComponent implements OnInit {
   }
   private selR(i) {
     this.ls.selectRou(i);
+  }
+  private whmDel(i) {
+    this.ls.remRou(i);
   }
 }
