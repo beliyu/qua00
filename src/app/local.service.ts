@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LocalService {
@@ -15,8 +17,16 @@ export class LocalService {
     }
   };
 
-  constructor() {
+  constructor(public http: Http) {
     this.getls();
+    // this.prox('Vancouver+BC|Seattle', 'San+Francisco|Victoria+BC');
+  }
+
+  prox (o, d) {
+    this.http.get('/api?origins=' + o + '&destinations=' + d + '&mode=driving&'
+      + 'key=AIzaSyD10M3NIuxY7fwqE39-_9cYz8SsLJ6Bv9E')
+      .map((res: Response) => res.json());
+      // .subscribe((data) => console.log(data.rows[0].elements[0]) );
   }
 
   getls() {
